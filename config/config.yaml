@@ -1,0 +1,60 @@
+# OTFS-RIS Simulator Configuration
+
+# General Settings
+general:
+  device: "cuda"  # cuda or cpu
+  seed: 42
+  verbose: true
+
+# OTFS Modulation Parameters
+otfs:
+  num_subcarriers: 64          # Number of subcarriers
+  num_symbols: 64              # Number of OFDM symbols
+  cyclic_prefix_length: 16     # CP length
+  subcarrier_spacing: 15e3     # Hz
+  fft_size: 128
+
+# Channel Parameters
+channel:
+  type: "rayleigh"             # rayleigh, rician, awgn
+  num_paths: 5                 # Number of multipath components
+  max_delay: 1e-6              # Maximum delay spread (seconds)
+  doppler_freq: 100            # Maximum Doppler frequency (Hz)
+  ris_enabled: true
+
+# RIS Parameters
+ris:
+  num_elements: 64             # Number of RIS elements
+  num_bits_phase: 3            # Quantization bits for phase shifters
+  frequency: 28e9              # Operating frequency (Hz)
+  wavelength_norm: 1.0         # Normalized wavelength
+  optimization_algorithm: "gradient"  # gradient, genetic, alternating
+
+# Simulation Parameters
+simulation:
+  snr_range: [0, 5, 10, 15, 20, 25, 30]  # SNR values in dB
+  num_frames: 100              # Number of frames to simulate
+  num_realizations: 10         # Number of channel realizations
+  batch_size: 32
+
+# Receiver Parameters
+receiver:
+  detector_type: "mmse"        # mmse, zf, ml
+  use_pilot_symbols: true
+  pilot_overhead: 0.1          # 10% pilot overhead
+  equalizer_type: "frequency"  # frequency, time, adaptive
+
+# Training Parameters (if applicable)
+training:
+  learning_rate: 0.001
+  num_epochs: 100
+  optimizer: "adam"
+  batch_size: 32
+
+# Output and Logging
+output:
+  save_results: true
+  results_dir: "results/"
+  plots_dir: "plots/"
+  logs_dir: "logs/"
+  plot_figures: true
