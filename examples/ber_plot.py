@@ -15,11 +15,12 @@ def main() -> None:
     ber = [item["ber"] for item in results]
 
     plt.figure(figsize=(8, 5))
-    plt.semilogy(snr, ber, marker="o", linewidth=2)
+    plt.semilogy(snr, ber, marker="o", linewidth=2, label="MMSE")
     plt.grid(True, which="both", linestyle="--", alpha=0.5)
     plt.xlabel("SNR [dB]")
     plt.ylabel("BER")
     plt.title("OTFS-RIS BER vs SNR (v2)")
+    plt.legend()
     plt.tight_layout()
     plt.savefig("plots/ber_vs_snr_v2.png", dpi=200)
     print("Saved plot to plots/ber_vs_snr_v2.png")
